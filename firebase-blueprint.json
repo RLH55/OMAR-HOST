@@ -1,0 +1,22 @@
+{
+  "entities": {
+    "UserAccount": {
+      "title": "UserAccount",
+      "description": "Represents a user's account and their storage plan.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "format": "email" },
+        "plan": { "type": "string", "enum": ["free", "paid", "owner"] },
+        "storageUsed": { "type": "number", "description": "Storage used in bytes" }
+      },
+      "required": ["uid", "email", "plan", "storageUsed"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "UserAccount",
+      "description": "User account information and storage limits."
+    }
+  }
+}
